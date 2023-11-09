@@ -45,14 +45,20 @@ end
 
 def subs_phase_2(arr)
     largest = arr[0]
-    arr.each_with_index do |ele, i|
-        current = arr[i..-1].sum
+    current = 0
+
+    arr.each do |ele|
+        current += ele
         if current > largest
             largest = current
+        elsif current < 0
+            current = 0
         end
     end
+
     largest
+
 end
 
-list = [2, 3, -6, 7, -6, 7]
+list = [-5, -1, -3]
 puts subs_phase_2(list)
