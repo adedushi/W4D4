@@ -25,23 +25,49 @@ end
 # puts bad_two_sum?(arr, 6)
 
 
-def okay_two_sum?(arr, target_sum)
-    return true if arr.sum == target_sum
-    return false if arr.length <= 1
+# def okay_two_sum?(arr, target_sum)
+#     return true if arr.sum == target_sum
+#     return false if arr.length <= 1
+#     sorted = arr.sort
+#     mid = sorted.length / 2
+
+#     left = arr[0...mid]
+#     right = arr[mid..-1]
+
+#     if target_sum < arr[mid]
+#         okay_two_sum?(left, target_sum)   
+#     else
+#         okay_two_sum?(right, target_sum)
+#     end
+
+# end
+
+
+def decent_two_sum(arr, target)
     sorted = arr.sort
-    mid = sorted.length / 2
 
-    left = arr[0...mid]
-    right = arr[mid..-1]
-
-    if target_sum < arr[mid]
-        okay_two_sum?(left, target_sum)   
-    else
-        okay_two_sum?(right, target_sum)
+    sorted.each_with_index do |ele, i|
+        result = bsearch(arr, target - ele, i + 1, arr.length)
+        return true if result != nil
     end
+
+    false
 
 end
 
-arr = [0, 5, 6, 6, 7, 9, 10, 11]
 
-puts okay_two_sum?(arr, 12)
+def bsearch(nums, target, start = 0, finish = nums.length)
+    return nil if start == finish
+  
+    mid = (finish - start) / 2 + start 
+    case target <=> nums[mid]
+    when -1
+      bsearch(nums, target, start, mid)
+    when 0
+      mid
+    when 1
+      bsearch(nums, target, mid + 1, finish)
+    end
+  end
+
+
