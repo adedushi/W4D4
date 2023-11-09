@@ -18,28 +18,34 @@ def second_anagram?(str1, str2)
     string_2 == ""
 end
 
-# puts second_anagram?("elivsliveson", "livesonelvis")
 
 def third_anagram?(str1, str2)
-    alphabet_sort(str1) == alphabet_sort(str2)
+    array_1 = str1.split('').sort
+    array_2 = str2.split('').sort
+
+    array_1.join('') == array_2.join('')
 end
 
-def alphabet_sort(str)
-    alphabet = ("a".."z").to_a
+p third_anagram?('elvis','lives')
 
-    sorted = false
 
-    until sorted
-        sorted = true
-        (0...str.length - 1).each do |i|
-            if alphabet.index(str[i]) > alphabet.index(str[i + 1])
-                str[i], str[i + 1] = str[i + 1], str[i]
-                sorted = false
-            end
-        end
-    end
+def fourth_anagram?(str1, str2)
+    hash_1 = Hash.new(0)
+    hash_2 = Hash.new(0)
 
-    str
+    str1.each_char {|char| hash_1[char] += 1}
+    str2.each_char {|char| hash_2[char] += 1}
+
+    hash_1 == hash_2
 end
 
-# puts third_anagram?("elivsliveson", "livesonelvis")
+
+def fourth_anagram2?(str1, str2)
+    one_hash = Hash.new(0)
+
+    str1.each_char {|char| one_hash[char] += 1}
+    str2.each_char {|char| one_hash[char] -= 1}
+
+    one_hash.all? {|k,v| v == 0}
+
+end
