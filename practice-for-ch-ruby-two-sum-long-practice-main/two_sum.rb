@@ -22,7 +22,6 @@ def bad_two_sum?(arr, target_sum)
 end
 
 
-# puts bad_two_sum?(arr, 6)
 
 
 # def okay_two_sum?(arr, target_sum)
@@ -68,6 +67,24 @@ def bsearch(nums, target, start = 0, finish = nums.length)
     when 1
       bsearch(nums, target, mid + 1, finish)
     end
-  end
+end
+
+
+
+def hash_map_way(arr, target)
+    my_hash = Hash.new(0)
+
+    arr.each do |ele|
+        my_hash[ele] += 1
+        result = my_hash[target - ele]
+        return true if result != nil
+    end
+
+    false
+end
+
+arr = [0, 1, 5, 7, 9, 10 , 11]
+
+p hash_map_way(arr, 8)
 
 

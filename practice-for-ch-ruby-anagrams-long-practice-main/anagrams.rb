@@ -26,9 +26,6 @@ def third_anagram?(str1, str2)
     array_1.join('') == array_2.join('')
 end
 
-p third_anagram?('elvis','lives')
-
-
 def fourth_anagram?(str1, str2)
     hash_1 = Hash.new(0)
     hash_2 = Hash.new(0)
